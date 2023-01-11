@@ -1,5 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
+'use strict';
+
 import * as vscode from 'vscode';
 import * as gemfile from 'gemfile';
 
