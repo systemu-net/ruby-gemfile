@@ -3,6 +3,7 @@
   "displayName": "ruby-gemfile",
   "description": "Inspect Ruby Gemfile",
   "version": "0.0.2",
+  "publisher": "ndemianc",
   "engines": {
     "vscode": "^1.74.0"
   },
