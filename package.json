@@ -1,8 +1,8 @@
 {
   "name": "ruby-gemfile",
   "displayName": "ruby-gemfile",
-  "description": "Inspect Ruby Gemfile",
-  "version": "0.0.2",
+  "description": "Inspect Ruby Gemfile at https://rubygems.org/gems/",
+  "version": "1.0.0",
   "publisher": "ndemianc",
   "engines": {
     "vscode": "^1.74.0"

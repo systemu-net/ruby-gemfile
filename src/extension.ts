@@ -61,22 +61,22 @@ class GemfileProvider implements vscode.HoverProvider {
     let specs = cache.get(document.uri.fsPath) || {};
     let str;
     if (gemName in specs) {
-      let version = 1; //specs[gemName].version;
-      endpoint = `${gemName}/version/${version}`;
+      let version = specs[gemName].version;
+      endpoint = `${gemName}/versions/${version}`;
     } else {
       let src = lineText.split(",")[1].replace(/["\s]/g, "").replace(":", ".com");
       let url = `https://${src}`;
       str = `View [${url}](${url})`;
-
-      if (endpoint) {
-        str = `View online RubyGems.org for [${endpoint}](https://rubygems.org/gems/${endpoint})`;
-      }
-
-      let doc = new vscode.MarkdownString(str);
-      let link = new vscode.Hover(doc, gemRange);
-
-      return link;
     }
+
+    if (endpoint) {
+      str = `View online rubygems.org for [${endpoint}](https://rubygems.org/gems/${endpoint})`;
+    }
+
+    let doc = new vscode.MarkdownString(str);
+    let link = new vscode.Hover(doc, gemRange);
+
+    return link;
   }
 }
 
