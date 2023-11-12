@@ -1,13 +1,17 @@
-# ruby-gemfile
+# VS Code Ruby Gemfile Extension
 
-Provides a hover link in Gemfile which refers to [RubyGems](https://rubygems.org/gems/) site for specific Ruby gem version defined in `Gemfile.lock`
+ruby-gemfile is an extension which provides a hover ling in the Gemfile which allow to open gem on [RubyGems](https://rubygems.org/gems/) site.
 
-## Release Notes
+![Screenshot](ruby-gemfile.gif)
 
-### 1.0.0
+## Features
 
-Initial release.
+* Provide hover link in Gemfile refers to online RubyGems site.
+
+## Usage
+
+Hover over particular Ruby Gem in the Gemfile to show an information dialog.
 
 -----------------------------------------------------------------------------------------------------------
 
-This is it 🚀
+Enjoy!

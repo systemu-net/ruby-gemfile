@@ -13,6 +13,10 @@
   "activationEvents": [
     "workspaceContains:Gemfile.lock"
   ],
+  "galleryBanner": {
+    "color": "#C80000",
+    "theme": "dark"
+  },
   "repository": {
     "url": "https://github.com/systemu-net/ruby-gemfile"
   },
