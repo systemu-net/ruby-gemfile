@@ -1,9 +1,9 @@
 // The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-'use strict';
+// 'use strict';
 
 import * as vscode from 'vscode';
 import * as gemfile from 'gemfile';
+import { URI } from 'vscode-uri';
 
 let cache:Map<string, object> = new Map();
 
@@ -12,20 +12,48 @@ class GemfileProvider implements vscode.HoverProvider {
     document: vscode.TextDocument,
     position: vscode.Position,
     token: vscode.CancellationToken
-  ): vscode.ProviderResult<vscode.Hover> {
-    let range = document.getWordRangeAtPosition(position, /([a-zA-Z\/0-9_\-]+(\.[a-zA-Z0-9]+))*/);
-    let gemName = document.getText(range);
+  ) {
+    let gemRange = document.getWordRangeAtPosition(position, /([A-Za-z\/0-9_-]+)(\.[A-Za-z0-9]+)*/);
+    console.log(`gemRange${gemRange?.start?.line}:${gemRange?.end?.line}`);
+    let gemName = document.getText(gemRange);
     let lineText = document.lineAt(position.line).text.trim();
 
-    if (['//', 'git_source', 'group', 'source'].some((element:string) => lineText.startsWith(element))) {
+    // if (['//', 'git_source', 'group', 'source'].some((element:string) => lineText.startsWith(element))) {
+    //   return;
+    // }
+
+    if (
+      lineText.startsWith("//") ||
+      lineText.startsWith("#") ||
+      lineText.startsWith("source")
+    ) {
       return;
     }
 
-    if (['require', 'true', 'false', 'group', 'development', 'test', 'production', 'do', 'gem'].indexOf(gemName) !== -1) {
+    // if (['require', 'true', 'false', 'group', 'development', 'test', 'production', 'do', 'gem'].indexOf(gemName) !== -1) {
+    //   return;
+    // }
+
+    if (!gemName || [
+      "require",
+      "true",
+      "false",
+      "group",
+      "development",
+      "test",
+      "production",
+      "do",
+      "gem"
+    ].indexOf(gemName) !== -1) {
       return;
     }
 
-    if (/^\d/.test(gemName)) {
+    // if (/^\d/.test(gemName)) {
+    //   return;
+    // }
+
+    if (/^[^a-zA-Z]+$/.test(gemName)) {
+      console.log("no alphabet");
       return;
     }
 
@@ -45,7 +73,9 @@ class GemfileProvider implements vscode.HoverProvider {
       }
 
       let doc = new vscode.MarkdownString(str);
-      let link = new vscode.Hover(doc, range);
+      let link = new vscode.Hover(doc, gemRange);
+
+      return link;
     }
   }
 }
@@ -63,23 +93,19 @@ export function activate(context: vscode.ExtensionContext) {
     scheme: "file"
   };
 
-  let allUris: Array<string> = [];
-  vscode
-    .workspace
-    .findFiles('**/Gemfile.lock')
+  var mineURIs: Array<string> = [];
+  vscode.workspace
+    .findFiles("**/Gemfile.lock")
     .then(uris => {
-      allUris = uris.map(uri => uri.fsPath.substring(0, uri.fsPath.length - 5));
+      mineURIs = uris.map(uri => uri.fsPath.substring(0, uri.fsPath.length - 5));
       return Promise.all(uris.map(uri => gemfile.parse(uri.fsPath)));
     })
     .then(infos => {
-      for (let i in allUris) {
-        cache.set(allUris[i], infos[i].GEM.specs);
+      for (let i in mineURIs) {
+        cache.set(mineURIs[i], infos[i].GEM.specs);
       }
     });
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.languages.registerHoverProvider(gemFile, new GemfileProvider());
 	let watcher = vscode.workspace.createFileSystemWatcher('**/Gemfile');
   watcher.onDidChange((uri: vscode.Uri) => {
