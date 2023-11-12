@@ -70,7 +70,7 @@ class GemfileProvider implements vscode.HoverProvider {
     }
 
     if (endpoint) {
-      str = `View online rubygems.org for [${endpoint}](https://rubygems.org/gems/${endpoint})`;
+      str = `[View online rubygems.org for ${endpoint}](https://rubygems.org/gems/${endpoint})`;
     }
 
     let doc = new vscode.MarkdownString(str);

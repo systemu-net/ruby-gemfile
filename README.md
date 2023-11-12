@@ -1,10 +1,10 @@
 # ruby-gemfile
 
-Provides a hover link in Gemfile which refers to RubyGems site for specific Ruby gem
+Provides a hover link in Gemfile which refers to [RubyGems](https://rubygems.org/gems/) site for specific Ruby gem version defined in `Gemfile.lock`
 
 ## Release Notes
 
-### 0.0.2
+### 1.0.0
 
 Initial release.
 

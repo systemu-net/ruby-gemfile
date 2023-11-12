@@ -17,6 +17,7 @@
     "url": "https://github.com/systemu-net/ruby-gemfile"
   },
   "main": "./out/extension.js",
+  "icon": "ruby-gemfile.png",
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
