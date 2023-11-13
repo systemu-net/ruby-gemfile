@@ -4,12 +4,12 @@
   "description": "Inspect Ruby Gemfile at https://rubygems.org/gems/",
   "version": "1.2.0",
   "publisher": "ndemianc",
+  "license": "MIT",
   "engines": {
     "vscode": "^1.74.0"
   },
-  "categories": [
-    "Other"
-  ],
+  "icon": "ruby-gemfile.png",
+  "main": "./out/extension.js",
   "activationEvents": [
     "workspaceContains:Gemfile.lock"
   ],
@@ -18,10 +18,19 @@
     "theme": "dark"
   },
   "repository": {
+    "type": "git",
     "url": "https://github.com/systemu-net/ruby-gemfile"
   },
-  "main": "./out/extension.js",
-  "icon": "ruby-gemfile.png",
+  "keywords": [
+    "ruby",
+    "rails",
+    "gemfile",
+    "gem",
+    "rubygems"
+  ],
+  "categories": [
+    "Other"
+  ],
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",

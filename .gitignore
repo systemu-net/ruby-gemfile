@@ -4,3 +4,6 @@ dist
 *.vsix
 node_modules
 .DS_Store
+
+# Dependency directory
+node_modules/
