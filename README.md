@@ -1,6 +1,6 @@
 # VS Code Ruby Gemfile Extension
 
-ruby-gemfile is an extension which provides a hover ling in the Gemfile which allow to open gem on [RubyGems](https://rubygems.org/gems/) site.
+`ruby-gemfile` is an extension which provides the hover LINK in the Gemfile which allow to open gem info on the [RubyGems](https://rubygems.org/gems/) site.
 
 ![Screenshot](ruby-gemfile.gif)
 
