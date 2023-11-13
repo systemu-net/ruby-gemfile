@@ -11,7 +11,7 @@
   "icon": "ruby-gemfile.png",
   "main": "./out/extension.js",
   "activationEvents": [
-    "workspaceContains:Gemfile.lock"
+    "workspaceContains:**/Gemfile.lock"
   ],
   "galleryBanner": {
     "color": "#C80000",
