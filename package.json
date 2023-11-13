@@ -2,7 +2,7 @@
   "name": "ruby-gemfile",
   "displayName": "ruby-gemfile",
   "description": "Inspect Ruby Gemfile at https://rubygems.org/gems/",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "publisher": "ndemianc",
   "license": "MIT",
   "engines": {
